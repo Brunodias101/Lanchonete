@@ -1,4 +1,3 @@
-package Pasta1;
 public class Produto {
 
     private String nome;
