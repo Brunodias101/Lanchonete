@@ -1,4 +1,5 @@
-package Pasta1;
+package Projeto_Lanchonete;
+
 public class Produto {
 
     private String nome;

@@ -1,21 +1,27 @@
-package Pasta1;
+package Projeto_Lanchonete;
+
 
 import java.util.Scanner;
 
-public class Main<vTotal> {
+
+public class Main {
 
     //Criação do Scanner, nomeado a entrada de "scanner"
     static Scanner scanner = new Scanner(System.in);
+    static double total = 0;
+    static double troco;
 
     public static void main(String[] args) {
         //Definição de variavel
-
-        int opcãoUm = 0, vRecebido = 0;
-        double total = 0;
-        int escolha = 8, escolhaDois = 1;
-
+        int escolha = 8, escolhaDois = 0;
+        int opcaoUm, vRecebido = 0;
         Produto[] produtos = criarProduto();
         Menu utilizar = new Menu();
+
+
+        JOMensagens.welcome();
+
+
         for (int parametro = 0; parametro <= escolha; ) {
             utilizar.menuUm(produtos);
             parametro = scanner.nextInt();
@@ -43,37 +49,38 @@ public class Main<vTotal> {
             if (parametro == 8)
                 total += criarPedido(produtos[parametro - 1], utilizar);
         }
-        //parte do caixa
-        System.out.println("O valor total do pedido é de R$ " + total);
-        System.out.println("--------------------");
-        System.out.println("Selecione forma de pagamento: ");
-        System.out.println("1- Cartão");
-        System.out.println("2- Dinheiro");
-        System.out.println("--------------------");
-        opcãoUm = scanner.nextInt();
-        switch (opcãoUm) {
+        JOMensagens.pedidoFinalizado(total);
+        System.out.println("-----------------------");
+        System.out.println("Selecione forma de pagamento");
+        System.out.println("1-Cartão");
+        System.out.println("2 - Dinheiro");
+        System.out.println("-----------------------");
+        opcaoUm = scanner.nextInt();
+        switch (opcaoUm) {
             case 1:
-                System.out.println("Seu pedido foi efutuado com sucesso");
+                JOMensagens.finalizarPedido();
                 break;
             case 2:
-
                 for (int apoio = 0; apoio <= escolhaDois; ) {
-                    System.out.println("Insira o valor: ");
+                    System.out.println("Insira o valor :");
                     vRecebido = scanner.nextInt();
                     if (vRecebido > total) {
-                        System.out.println("Seu troco é de " + (vRecebido - total));
                         apoio = 2;
+                        troco = (vRecebido - total);
+                        JOMensagens.finalizarPedidoTroco(troco);
+
                     } else if (vRecebido == total) {
-                        System.out.println("comprar realizada com sucesso");
                         apoio = 2;
+                        JOMensagens.finalizarPedido();
+
                     } else if (vRecebido < total) {
                         System.out.println("Valor incorreto");
+
                     }
+
                 }
         }
-
     }
-    //acaba aqui o main
 
     private static double criarPedido(Produto produto, Menu utilizar) {
         double total = 0;
@@ -92,7 +99,7 @@ public class Main<vTotal> {
                 System.out.println("Quantos " + produto.getNome() + " gostaria de comprar:");
                 quantidade += (quantidade = scanner.nextInt());
                 total = (produto.getPreco() * quantidade);
-                System.out.println("Foi adicionado " + total + " a sua compra");
+                JOMensagens.pedidoSucesso(total);
                 break;
             case 2:
                 break;
@@ -113,7 +120,10 @@ public class Main<vTotal> {
         Produto suco_de_morango = new Produto("Suco de morango", "300ml", 6.50);
         Produto agua = new Produto("Agua", "sem gas", 2.50);
         Produto refrigerante_lata = new Produto("Refrigerante lata", "350ml", 5.00);
+
         Produto[] produtos = {x_burguer, x_salada, x_bacon, fritas, Suco_de_laranja, suco_de_morango, agua, refrigerante_lata};
         return produtos;
     }
+
 }
+
