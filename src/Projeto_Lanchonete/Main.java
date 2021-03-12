@@ -8,11 +8,12 @@ public class Main {
 
     //Criação do Scanner, nomeado a entrada de "scanner"
     static Scanner scanner = new Scanner(System.in);
-    //Definição de variavel
-    static double total = 0;
+
+    //Definição de atributo
+    static double total;
     static double troco;
-    static int opcaoUm, vRecebido = 0;
-    static int escolha = 8, escolhaDois = 1;
+    static int opcaoUm, vRecebido;
+    static final int escolha = 8, escolhaDois = 1;
 
     public static void main(String[] args) {
         Produto[] produtos = criarProduto();
@@ -21,6 +22,7 @@ public class Main {
 //Iniciação do programa
         JOMensagens.welcome();
 
+//fase do menu
 
         for (int parametro = 0; parametro <= escolha; ) {
             utilizar.menuUm(produtos);
@@ -49,12 +51,17 @@ public class Main {
             if (parametro == 8)
                 total += criarPedido(produtos[parametro - 1], utilizar);
         }
-       JOMensagens.pedidoFinalizado(total);
+        //fase do caixa
+
+        JOMensagens.pedidoFinalizado(total);
         utilizar.opcaoPagamento();
-        formaPagamento(opcaoUm,escolhaDois);
+        efetuarPagamento(opcaoUm, escolhaDois);
     }
 
-    private static int formaPagamento(int opcaoUm, int escolhaDois ){
+
+    //metodo da classe main
+
+    private static int efetuarPagamento(int opcaoUm, int escolhaDois) {
         opcaoUm = scanner.nextInt();
 
         switch (opcaoUm) {
@@ -86,6 +93,7 @@ public class Main {
 
     }
 
+
     private static double criarPedido(Produto produto, Menu utilizar) {
         double total = 0;
         int quantidade = 0;
@@ -114,6 +122,8 @@ public class Main {
 
         return total;
     }
+
+    //criacao dos objetos(produtos)
 
     private static Produto[] criarProduto() {
         Produto x_burguer = new Produto("X-burguer", "pão trad, burguer bovino 140g, maionese branca da casa", 13.90);
