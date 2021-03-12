@@ -14,7 +14,7 @@ public class Menu {
 
     public void menuUm(Produto[] produtos) {
         System.out.println("----------------------------");
-        System.out.println("ArquivoAntigo.Menu de opções:");
+        System.out.println("Menu de opções:");
         for (int i = 0; i < produtos.length; i++) {
             System.out.println(i + 1 + "- " + produtos[i].getNome());
         }
@@ -30,6 +30,13 @@ public class Menu {
         System.out.println("2-volta ao menu de opções");
         System.out.println("----------------------------");
         System.out.println("faça uma escolha:");
+        System.out.println("----------------------------");
+    }
+    public void opcaoPagamento() {
+        System.out.println("----------------------------");
+        System.out.println("Selecione forma de pagamento");
+        System.out.println("1-Cartão");
+        System.out.println("2-Dinheiro");
         System.out.println("----------------------------");
     }
 }

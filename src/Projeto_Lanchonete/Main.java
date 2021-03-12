@@ -8,17 +8,17 @@ public class Main {
 
     //Criação do Scanner, nomeado a entrada de "scanner"
     static Scanner scanner = new Scanner(System.in);
+    //Definição de variavel
     static double total = 0;
     static double troco;
+    static int opcaoUm, vRecebido = 0;
+    static int escolha = 8, escolhaDois = 1;
 
     public static void main(String[] args) {
-        //Definição de variavel
-        int escolha = 8, escolhaDois = 0;
-        int opcaoUm, vRecebido = 0;
         Produto[] produtos = criarProduto();
         Menu utilizar = new Menu();
 
-
+//Iniciação do programa
         JOMensagens.welcome();
 
 
@@ -49,13 +49,14 @@ public class Main {
             if (parametro == 8)
                 total += criarPedido(produtos[parametro - 1], utilizar);
         }
-        JOMensagens.pedidoFinalizado(total);
-        System.out.println("-----------------------");
-        System.out.println("Selecione forma de pagamento");
-        System.out.println("1-Cartão");
-        System.out.println("2 - Dinheiro");
-        System.out.println("-----------------------");
+       JOMensagens.pedidoFinalizado(total);
+        utilizar.opcaoPagamento();
+        formaPagamento(opcaoUm,escolhaDois);
+    }
+
+    private static int formaPagamento(int opcaoUm, int escolhaDois ){
         opcaoUm = scanner.nextInt();
+
         switch (opcaoUm) {
             case 1:
                 JOMensagens.finalizarPedido();
@@ -79,7 +80,10 @@ public class Main {
                     }
 
                 }
+                break;
         }
+        return opcaoUm;
+
     }
 
     private static double criarPedido(Produto produto, Menu utilizar) {
