@@ -1,6 +1,7 @@
 package Projeto_Lanchonete;
 
 import javax.swing.JOptionPane;
+import java.text.DecimalFormat;
 
 public class JOMensagens {
     public static void welcome() {
@@ -29,8 +30,9 @@ public class JOMensagens {
                 JOptionPane.PLAIN_MESSAGE);
     }
     public static void finalizarPedidoTroco(double troco) {
+        DecimalFormat df= new DecimalFormat("##.##");
         JOptionPane.showMessageDialog(null,
-                "Pedido finalizado com sucesso!\n"+"Seu troco é de R$"+troco+"\n"+"Obrigado pela preferência, volte sempre!!!",
+                "Pedido finalizado com sucesso!\n"+"Seu troco é de R$"+df.format(troco)+"\n"+"Obrigado pela preferência, volte sempre!!!",
                 "",
                 JOptionPane.PLAIN_MESSAGE);
     }

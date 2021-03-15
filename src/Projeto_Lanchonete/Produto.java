@@ -13,6 +13,7 @@ public class Produto {
     }
 
     public String getNome() {
+
         return this.nome;
     }
 
